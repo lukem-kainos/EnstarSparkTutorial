@@ -44,6 +44,6 @@ object EnstarSpark {
     val tableWithoutDates = joinedTables.drop("birth_date", "hire_date", "from_date", "to_date")
 
     tableWithoutDates.write.format("com.databricks.spark.avro").save("tmp/output")
-    sc.stop
+    sc.stop()
   }
 }
