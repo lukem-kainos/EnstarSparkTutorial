@@ -5,12 +5,13 @@ import org.apache.spark.sql.SparkSession
 
 object EnstarSpark {
   def main(args: Array[String]) {
-    val conf = new SparkConf().setAppName("Simple Application")
+    val conf = new SparkConf()
+      .setAppName("Simple Application")
       .setMaster("local")
     val sc = new SparkContext(conf)
     val sparkSession = SparkSession.builder.config(conf).getOrCreate()
 
-    //// this is the test bit that we can remove
+    // look at the readme and count how many lines have an "a" and how many a "b"
     val logFile = "README.md" // Should be some file on your system
     val logData = sc.textFile(logFile, 2).cache()
     val numAs = logData.filter(line => line.contains("a")).count()
